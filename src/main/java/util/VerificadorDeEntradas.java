@@ -1,9 +1,20 @@
-package verify;
+package main.java.util;
+
+import main.java.model.ProjetoPON;
 
 public class VerificadorDeEntradas {
 
-    public static String verificar(Double Pt, Double Sr, Double Af, Double Cf, Double Pc, Integer Nc, Double Ps, Double Ms) {
+    public static String verificar(ProjetoPON projeto) {
         StringBuilder erros = new StringBuilder();
+
+        Double Pt = projeto.getPotenciaTx();
+        Double Sr = projeto.getSensibilidadeRx();
+        Double Af = projeto.getAtenuacaoFibra();
+        Double Cf = projeto.getComprimentoFibra();
+        Double Pc = projeto.getPerdaConector();
+        Integer Nc = projeto.getQtdConectores();
+        Double Ps = projeto.getPerdaSplitter();
+        Double Ms = projeto.getMargemSeguranca();
 
         if (Pt != null && (Pt < 0 || Pt > 10))
             erros.append("⚠️ Potência de transmissão (Pt) fora do intervalo típico (0 a 10 dBm).\n");

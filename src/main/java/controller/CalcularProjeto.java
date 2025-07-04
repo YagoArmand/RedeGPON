@@ -1,8 +1,19 @@
-package calcs;
+package main.java.controller;
+
+import main.java.model.ProjetoPON;
 
 public class CalcularProjeto {
 
-    public static String calcular(Double Pt, Double Sr, Double Af, Double Cf, Double Pc, Integer Nc, Double Ps, Double Ms) {
+    public static String calcular(ProjetoPON projeto) {
+        Double Pt = projeto.getPotenciaTx();
+        Double Sr = projeto.getSensibilidadeRx();
+        Double Af = projeto.getAtenuacaoFibra();
+        Double Cf = projeto.getComprimentoFibra();
+        Double Pc = projeto.getPerdaConector();
+        Integer Nc = projeto.getQtdConectores();
+        Double Ps = projeto.getPerdaSplitter();
+        Double Ms = projeto.getMargemSeguranca();
+
         int vazios = 0;
         if (Pt == null) vazios++;
         if (Sr == null) vazios++;
@@ -17,7 +28,6 @@ public class CalcularProjeto {
             return "⚠️ Preencha todos os campos, exceto apenas UM para ser calculado.\n";
         }
 
-        // Cálculo baseado na equação: Pt = Sr + (Af * Cf + Pc * Nc + Ps) + Ms
         if (Pt == null) {
             return "✔️ Potência de transmissão (Pt) = " + (Sr + (Af * Cf + Pc * Nc + Ps) + Ms) + " dBm";
         } else if (Sr == null) {
@@ -38,5 +48,4 @@ public class CalcularProjeto {
             return "⚠️ Nenhum campo está em branco. Deixe um vazio para que ele seja calculado.";
         }
     }
-    
 }
